@@ -27,5 +27,5 @@ Access the app here:
 If you want to run it locally:
 
 1. Clone the repo.
-2. Install requirements:
-   s
+2. Install requirements: pip install -r requirements.txt
+3. Start the app: streamlit run app.py
