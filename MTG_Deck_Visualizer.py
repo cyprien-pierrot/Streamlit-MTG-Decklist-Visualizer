@@ -2,9 +2,27 @@ import streamlit as st
 import requests
 import re
 import time
+from suggested_decklists import SUGGESTED_DECKS  # Import the suggested decklists
 
 # App title
 st.title("Decklist Visualizer")
+
+st.subheader("Or pick a recent Standard decklist:")
+
+suggested = st.selectbox(
+    "Choose a deck to load",
+    [""] + list(SUGGESTED_DECKS.keys()),
+    index=0,
+    key="suggested_deck_select"
+)
+
+if suggested:
+    if st.button(f"Load '{suggested}' decklist"):
+        st.session_state["decklist_input"] = SUGGESTED_DECKS[suggested]
+
+# Use st.session_state to pre-fill the text area if a deck was loaded
+if "decklist_input" not in st.session_state:
+    st.session_state["decklist_input"] = ""
 
 decklist = st.text_area(
     "Enter your decklist:",
